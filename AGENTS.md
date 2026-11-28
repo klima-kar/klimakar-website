@@ -47,6 +47,7 @@ Static Astro 7 site in the **Szron** design, plus two one-page brand sites in `s
 - `npm run build` passes (17 pages, incl. /panel/; /galeria/ is switched off); after changes to `sites/`, `src/data/` or shared components,
   `npm run build:all` too. The PR checks (`.github/workflows/pr-checks.yml`) run `npm run check:types` (astro check),
   `npm run build:all` and `npm run check:links`; run them locally (in the container) before opening a PR.
+- Skill `verify` (`.agents/skills/verify/`) maps each kind of change to its check and the page flows to look at; before adding or editing a check or test, load skill `writing-tests`.
 - Look at changed pages at 1440px and 390px (and ~1024/1366 for anything in grids or bars).
   No text may overflow its column; long Polish words in display headings may need a soft
   hyphen (`{"Bezpieczeń\u00ADstwo"}`; a JS expression, since quoted attributes don't unescape).
