@@ -66,6 +66,7 @@ Everything about the design lives in `design/szron/`:
 ├── private/                       # clone of the private repo, not tracked here (see "Private files")
 ├── .github/workflows/deploy.yml   # GitHub Pages preview deploy (push to main)
 ├── .github/workflows/pr-checks.yml # PR checks: astro check, build:all, check:links (deploys nothing)
+├── .github/workflows/production-build.yml # production build of every main commit (artifact `site-build`)
 └── .github/pull_request_template.md # PR description template (Polish; "Jak sprawdzone" required)
 ```
 
@@ -174,9 +175,9 @@ can't send on the demo. The workflow builds with `PUBLIC_NOINDEX=true`, so every
 
 ### Production: klima-kar.wroclaw.pl (OVH web hosting)
 
-Live since 2026-10-15; the launch checklist (Polish) is `private/WDROZENIE.md`. To publish changes, build
-without `PUBLIC_NOINDEX` and upload the changed files of `dist/` to `www/` on the OVH hosting (never
-with a delete/mirror option: `www/` also holds the Search Console file). The first launch went:
+Live since 2026-10-15; the launch checklist (Polish) is `private/WDROZENIE.md`. Changes are published by
+infra `deploy` on the owner's command: it uploads the `site-build` artifact of
+`.github/workflows/production-build.yml` (never deleting on the server). The first launch went:
 
 1. Before the switch, export Google Search Console data for the last 16 months (Skuteczność:
    pages, queries, clicks, impressions) to compare after the launch.

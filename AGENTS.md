@@ -83,8 +83,8 @@ Static Astro 7 site in the **Szron** design, plus two one-page brand sites in `s
   `PUBLIC_NOINDEX=true` so every page has `noindex`; PHP and the
   contact form don't run there).
 - Production is https://klima-kar.wroclaw.pl/ on OVH and serves this site since 2026-10-15
-  (brand sites too). Uploading changes means copying the changed files of `dist/` (or `dist-<name>/`)
-  there; only when the user asks. Build without `PUBLIC_NOINDEX`, never delete/mirror on the server,
+  (brand sites too). Changes are uploaded by infra `deploy` from the CI artifact `site-build`
+  (`production-build.yml`), only when the user asks; nothing is deleted on the server,
   see README › Deployment.
 - The notice and extra days off are the owner's, edited in /panel/ and stored only in `www/status.json`
   on the server (README › Panel). Never put a `status.json` in the build or upload one; never commit
