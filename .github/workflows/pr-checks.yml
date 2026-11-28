@@ -36,7 +36,7 @@ jobs:
         run: npm run check:links
 
   # Agent files check (infra#228): context budget (AGENTS.md/CLAUDE.md <= 10 000 B, skill description <= 200 characters)
-  # and layout; "who touches, fixes", observe mode (warnings only). Runs the vendored copy of platform-ci's
+  # and layout; "who touches, fixes", enforce mode. Runs the vendored copy of platform-ci's
   # agents_check.py from the base branch, so a PR cannot change the check that judges it (platform-ci README.md).
   agents:
     runs-on: ubuntu-latest
@@ -60,7 +60,7 @@ jobs:
           # the first PR adding the copy has none on the base - it runs its own (gate file, the reviewer checks it)
           if git cat-file -e "$base:$f" 2>/dev/null; then git show "$base:$f" > "$RUNNER_TEMP/agents_check.py"; else cp "$f" "$RUNNER_TEMP/agents_check.py"; fi
           python3 "$RUNNER_TEMP/agents_check.py" --self-test
-          python3 "$RUNNER_TEMP/agents_check.py" . --base "$base" --github
+          python3 "$RUNNER_TEMP/agents_check.py" . --base "$base" --mode enforce --github
 
   # Comment policy and docs budget (infra#681), enforce mode, "who touches, fixes" (--base). Vendored copies of
   # platform-ci's check_comments.py and docs_check.py, run from the base branch like agents_check.py above.
