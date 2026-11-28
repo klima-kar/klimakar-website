@@ -181,7 +181,7 @@ infra `deploy` on the owner's command: it uploads the `site-build` artifact of
 
 1. Before the switch, export Google Search Console data for the last 16 months (Skuteczność:
    pages, queries, clicks, impressions) to compare after the launch.
-2. `npm run build` **without** `PUBLIC_NOINDEX` (check: `grep -r noindex dist` finds nothing).
+2. `npm run build` **without** `PUBLIC_NOINDEX` (check: `grep -rl noindex dist` lists only `panel/`).
 3. Download a backup of the server's `www/` (old site and its `.htaccess`).
 4. Delete the old site's files from `www/` (above all `index.php`). Then upload the **entire contents** of `dist/` (including `.htaccess` and the
    `google9f5b4b661a30a4e0.html` Search Console file; `CNAME` is only for GitHub Pages and can be
